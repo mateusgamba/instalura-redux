@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FotoItem from './FotoItem';
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group';
+import TimelineApi from '../logicas/TimelineApi';
 
 class Timeline extends Component {
 
@@ -15,8 +16,8 @@ class Timeline extends Component {
     * É chamado antes de invocar o Render
     */
     componentWillMount() {
-        this.props.store.subscribe(fotos => {
-            this.setState({fotos});
+        this.props.store.subscribe(() => {
+            this.setState({ fotos: this.props.store.getState() });
         })
     }
 
@@ -27,7 +28,8 @@ class Timeline extends Component {
         } else {
             urlPerfil = `http://localhost:8080/api/public/fotos/${this.login}`;
         }
-        this.props.store.lista(urlPerfil);
+        this.props.store.dispatch(TimelineApi.lista(urlPerfil));
+
     }
 
     /*
@@ -50,11 +52,11 @@ class Timeline extends Component {
     }
 
     like(fotoId) {
-        this.props.store.like(fotoId);
+        this.props.store.dispatch(TimelineApi.like(fotoId));
     }
 
     comenta(fotoId, textoComentario) {
-        this.props.store.comenta(fotoId, textoComentario);
+        this.props.store.dispatch(TimelineApi.comenta(fotoId, textoComentario));
     }
 
     render() {

@@ -1,4 +1,4 @@
-### Instalura
+### Instalura with Redux
 
 Project based on the Instagram, developed to learn React
 
@@ -41,6 +41,3 @@ Usuário: vitor
 
 Senha: 123456
 ```
-
-
-[Interesting article about JWT Auth with React Router 4](http://www.thegreatcodeadventure.com/jwt-auth-with-phoenix-and-react-router-4/)
